@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Eternia")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+368186d31d7b743ca013d8e60c5a80e3c5512739")]
 [assembly: System.Reflection.AssemblyProductAttribute("Eternia")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Eternia")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -17,7 +17,7 @@ namespace Eternia.Content.Items.Souls.MeleeSoul
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             base.UpdateAccessory(player, hideVisual);
-            player.GetDamage(DamageClass.Melee) += 0.25f; // +25% magic damage
+            player.GetDamage(DamageClass.Melee) += PercentageIncrease; // +25% magic damage
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Eternia.Content.Items.Souls.SummonerSoul
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             base.UpdateAccessory(player, hideVisual);
-            player.GetDamage(DamageClass.Summon) += 0.25f; // +25% magic damage
+            player.GetDamage(DamageClass.Summon) += PercentageIncrease; // +25% magic damage
         }
     }
 }

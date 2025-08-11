@@ -16,7 +16,7 @@ namespace Eternia.Content.Items.Souls.RangedSoul
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             base.UpdateAccessory(player, hideVisual);
-            player.GetDamage(DamageClass.Ranged) += 0.25f; // +25% magic damage
+            player.GetDamage(DamageClass.Ranged) += PercentageIncrease; // +25% magic damage
         }
     }
 }

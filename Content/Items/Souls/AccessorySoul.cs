@@ -1,12 +1,26 @@
+using System;
+using System.Collections.Generic;
 using Eternia.Content.Players;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
+using Terraria.Localization;
+
 namespace Eternia.Content.Items.Souls;
 
-public class AccessorySoul : ModItem
+public abstract class AccessorySoul : ModItem
 {
-    public EAccessorySoul ThisAccessorySoul = EAccessorySoul.None;
+    protected EAccessorySoul ThisAccessorySoul = EAccessorySoul.None;
+    
+    private static LocalizedText SoulAccessoryTooltip { get; set; }
+    protected float PercentageIncrease { get; set; } = 0.25f; // Default to 25% increase
+    
+    
+    
+    public override void SetStaticDefaults()
+    {
+        SoulAccessoryTooltip = this.GetLocalization("Tooltip");
+    }
     
     public override void SetDefaults()
     {
@@ -25,6 +39,13 @@ public class AccessorySoul : ModItem
             return;
         
         globalPlayer.EquippedAccessorySoul = ThisAccessorySoul;
+    }
+    
+    public override void ModifyTooltips(List<TooltipLine> tooltips)
+    {   
+        var localizedTooltip = SoulAccessoryTooltip.Format(Math.Round(PercentageIncrease* 100));
+        tooltips[2].Text = localizedTooltip;        
+        tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Using this item will kill you if you betray your class."));
     }
     
 }

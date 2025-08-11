@@ -1,42 +1,31 @@
 Mods: {
 	Eternia: {
-		Items: {
-			MeleeSoul: {
-				DisplayName: Melee Soul
-				Tooltip: The soul of a melee warrior.
-			}
-		}
 	}
 }
 
 Items: {
 	MageSoul: {
 		DisplayName: Mage Soul
-		Tooltip: ""
+		Tooltip: Increases {0}% magic damage.
 	}
 
 	MeleeSoul: {
 		DisplayName: Melee Soul
-		Tooltip: ""
+		Tooltip: Increases {0}% melee damage.
 	}
 
 	RangedSoul: {
 		DisplayName: Ranged Soul
-		Tooltip: ""
+		Tooltip: Increases {0}% ranged damage.
 	}
 
 	StarterSoul: {
 		DisplayName: Starter Soul
-		Tooltip: ""
+		Tooltip: Increases all damage by {0}%.
 	}
 
 	SummonerSoul: {
 		DisplayName: Summoner Soul
-		Tooltip: ""
-	}
-
-	AccessorySoul: {
-		DisplayName: Accessory Soul
-		Tooltip: ""
+		Tooltip: Increases {0}% minion damage.
 	}
 }

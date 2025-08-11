@@ -16,7 +16,7 @@ namespace Eternia.Content.Items.Souls.MageSoul
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             base.UpdateAccessory(player, hideVisual);
-            player.GetDamage(DamageClass.Magic) += 0.25f; // +25% magic damage
+            player.GetDamage(DamageClass.Magic) += PercentageIncrease; // +25% magic damage
         }
     }
 }
