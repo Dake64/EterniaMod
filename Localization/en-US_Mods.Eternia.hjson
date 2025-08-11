@@ -1,0 +1,42 @@
+Mods: {
+	Eternia: {
+		Items: {
+			MeleeSoul: {
+				DisplayName: Melee Soul
+				Tooltip: The soul of a melee warrior.
+			}
+		}
+	}
+}
+
+Items: {
+	MageSoul: {
+		DisplayName: Mage Soul
+		Tooltip: ""
+	}
+
+	MeleeSoul: {
+		DisplayName: Melee Soul
+		Tooltip: ""
+	}
+
+	RangedSoul: {
+		DisplayName: Ranged Soul
+		Tooltip: ""
+	}
+
+	StarterSoul: {
+		DisplayName: Starter Soul
+		Tooltip: ""
+	}
+
+	SummonerSoul: {
+		DisplayName: Summoner Soul
+		Tooltip: ""
+	}
+
+	AccessorySoul: {
+		DisplayName: Accessory Soul
+		Tooltip: ""
+	}
+}
