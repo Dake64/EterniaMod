@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Eternia.Content.Players;
 using Terraria;
+using Terraria.DataStructures;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternia.Content.Items;
@@ -31,48 +33,53 @@ public class EterniaGlobalItem : GlobalItem
 
         var currentItemDamageTypes = item.DamageType.Name;
 
-        var deathReason = "";
+        var deathReason = NetworkText.Empty;
         switch (equippedAccessorySoul)
         {
             case EAccessorySoul.Melee:
+            {
+                if (!item.CountsAsClass(DamageClass.Melee))
                 {
-                    if (!item.CountsAsClass(DamageClass.Melee))
-                    {
-                        betrayedHisClass = true;
-                        deathReason = $"{Main.LocalPlayer.name} traicionó el camino del guerrero.";
-                    }
-
-                    break;
+                    betrayedHisClass = true;
+                    deathReason = NetworkText.FromKey("Mods.Eternia.Items.MeleeSoul.DeathMessage", Main.LocalPlayer.name);
+                    //deathReason = $"{Main.LocalPlayer.name} traicionó el camino del guerrero.";
                 }
+
+                break;
+            }
             case EAccessorySoul.Ranged:
+            {
+                if (!item.CountsAsClass(DamageClass.Ranged))
                 {
-                    if (!item.CountsAsClass(DamageClass.Ranged))
-                    {
-                        betrayedHisClass = true;
-                        deathReason = $"{Main.LocalPlayer.name} traicionó el camino del arquero.";
-
-                    }
-
-                    break;
+                    betrayedHisClass = true;
+                    deathReason = NetworkText.FromKey("Mods.Eternia.Items.RangedSoul.DeathMessage", Main.LocalPlayer.name);
+                    //deathReason = $"{Main.LocalPlayer.name} traicionó el camino del arquero.";
                 }
+
+                break;
+            }
             case EAccessorySoul.Mage:
+            {
+                if (!item.CountsAsClass(DamageClass.Magic))
                 {
-                    if (!item.CountsAsClass(DamageClass.Magic))
-                    {
-                        betrayedHisClass = true;
-                        deathReason = $"{Main.LocalPlayer.name} traicionó el camino del mago.";
-                    }
-                    break;
+                    betrayedHisClass = true;
+                    deathReason = NetworkText.FromKey("Mods.Eternia.Items.MageSoul.DeathMessage", Main.LocalPlayer.name);
+                    //deathReason = $"{Main.LocalPlayer.name} traicionó el camino del mago.";
                 }
+
+                break;
+            }
             case EAccessorySoul.Summoner:
+            {
+                if (!item.CountsAsClass(DamageClass.Summon))
                 {
-                    if (!item.CountsAsClass(DamageClass.Summon))
-                    {
-                        betrayedHisClass = true;
-                        deathReason = $"{Main.LocalPlayer.name} traicionó el camino del invocador.";
-                    }
-                    break;
+                    betrayedHisClass = true;
+                    deathReason = NetworkText.FromKey("Mods.Eternia.Items.SummonerSoul.DeathMessage", Main.LocalPlayer.name);
+                    //deathReason = $"{Main.LocalPlayer.name} traicionó el camino del invocador.";
                 }
+
+                break;
+            }
             default:
                 throw new ArgumentOutOfRangeException();
         }
@@ -80,11 +87,10 @@ public class EterniaGlobalItem : GlobalItem
         if (!betrayedHisClass || item.damage <= 0) return true;
 
         Main.LocalPlayer.KillMe(
-            Terraria.DataStructures.PlayerDeathReason.ByCustomReason(deathReason),
+            PlayerDeathReason.ByCustomReason(deathReason),
             9999,
             0
         );
-        // Terraria.Localization.NetworkText
         return false;
     }
 }

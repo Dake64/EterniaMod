@@ -11,14 +11,9 @@ namespace Eternia.Content.Items.Souls;
 public abstract class AccessorySoul : ModItem
 {
     protected EAccessorySoul ThisAccessorySoul = EAccessorySoul.None;
+    public float PercentageIncrease { get; set; } = 0.25f; // Default to 25% increase
 
-    protected static LocalizedText SoulAccessoryTooltip { get; set; }
-    protected float PercentageIncrease { get; set; } = 0.25f; // Default to 25% increase
-
-    public override void SetStaticDefaults()
-    {
-        SoulAccessoryTooltip = this.GetLocalization("Tooltip");
-    }
+    protected LocalizedText MageSoulTooltip { get; set; }
 
     public override void SetDefaults()
     {
@@ -27,6 +22,8 @@ public abstract class AccessorySoul : ModItem
         Item.accessory = true;
         Item.rare = ItemRarityID.Yellow;
         Item.value = Item.buyPrice(0, 10);
+
+        MageSoulTooltip = this.GetLocalization("Tooltip");
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual)
@@ -41,9 +38,17 @@ public abstract class AccessorySoul : ModItem
 
     public override void ModifyTooltips(List<TooltipLine> tooltips)
     {
-        var localizedTooltip = SoulAccessoryTooltip.Format(Math.Round(PercentageIncrease * 100));
-        tooltips[2].Text = localizedTooltip;
-        tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Using this item will kill you if you betray your class."));
-    }
+        base.ModifyTooltips(tooltips);
+        var descriptionIndex = tooltips.FindIndex(line => line.Name == "Tooltip0");
 
+        if (descriptionIndex > 0)
+        {
+            tooltips[descriptionIndex].Text = MageSoulTooltip.Format(Math.Round(PercentageIncrease * 100));
+        }
+        else
+        {
+            var description = new TooltipLine(Mod, "Tooltip", MageSoulTooltip.Value);
+            tooltips.Add(description);
+        }
+    }
 }

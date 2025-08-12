@@ -7,16 +7,19 @@ Items: {
 	MageSoul: {
 		DisplayName: Mage Soul
 		Tooltip: Increases {0}% magic damage.
+		DeathMessage: "{0} betray the Mages soul!"
 	}
 
 	MeleeSoul: {
 		DisplayName: Melee Soul
 		Tooltip: Increases {0}% melee damage.
+		DeathMessage: "{0} betray the Warriors soul!"
 	}
 
 	RangedSoul: {
 		DisplayName: Ranged Soul
 		Tooltip: Increases {0}% ranged damage.
+		DeathMessage: "{0} betray the Rangers soul!"
 	}
 
 	StarterSoul: {
@@ -27,5 +30,6 @@ Items: {
 	SummonerSoul: {
 		DisplayName: Summoner Soul
 		Tooltip: Increases {0}% minion damage.
+		DeathMessage: "{0} betray the Summoners soul!"
 	}
 }

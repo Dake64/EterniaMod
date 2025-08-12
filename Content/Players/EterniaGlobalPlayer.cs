@@ -12,8 +12,5 @@ namespace Eternia.Content.Players
         {
             EquippedAccessorySoul = EAccessorySoul.None;
         }
-        
-        
-        
     }
 }
