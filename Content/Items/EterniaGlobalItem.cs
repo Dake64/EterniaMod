@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Eternia.Content.Players;
@@ -31,6 +31,11 @@ public class EterniaGlobalItem : GlobalItem
 
     public override bool? UseItem(Item item, Player player)
     {
+        Main.NewText(item.CountsAsClass(DamageClass.Summon));
+        Main.NewText(item.CountsAsClass(DamageClass.Ranged));
+        Main.NewText(item.CountsAsClass(DamageClass.Melee));
+        Main.NewText(item.CountsAsClass(DamageClass.Magic));
+
         Main.NewText($"Item: {item.Name}");
         Main.NewText($"{item.DamageType.DisplayName}");
         Main.NewText($"{item.DamageType.Name}");
@@ -66,47 +71,43 @@ public class EterniaGlobalItem : GlobalItem
         switch (equippedAccessorySoul)
         {
             case EAccessorySoul.Melee:
-            {
-                if (!ContainsAny(currentItemDamageTypes, MeleePositiveNames) ||
-                    ContainsAny(currentItemDamageTypes, MeleeNegativeNames))
                 {
-                    betrayedHisClass = true;
-                    deathReason = $"{Main.LocalPlayer.name} traicionó el camino del guerrero.";
-                }
+                    if (!item.CountsAsClass(DamageClass.Melee))
+                    {
+                        betrayedHisClass = true;
+                        deathReason = $"{Main.LocalPlayer.name} traicionó el camino del guerrero.";
+                    }
 
-                break;
-            }
+                    break;
+                }
             case EAccessorySoul.Ranged:
-            {
-                if (!ContainsAny(currentItemDamageTypes, RangedPositiveNames) ||
-                    ContainsAny(currentItemDamageTypes, RangedNegativeNames))
                 {
-                    betrayedHisClass = true;
-                    deathReason = $"{Main.LocalPlayer.name} traicionó el camino del arquero.";
-                }
+                    if (!item.CountsAsClass(DamageClass.Ranged))
+                    {
+                        betrayedHisClass = true;
+                        deathReason = $"{Main.LocalPlayer.name} traicionó el camino del arquero.";
+                    }
 
-                break;
-            }
+                    break;
+                }
             case EAccessorySoul.Mage:
-            {
-                if (!ContainsAny(currentItemDamageTypes, MagicPositiveNames) ||
-                    ContainsAny(currentItemDamageTypes, MagicNegativeNames))
                 {
-                    betrayedHisClass = true;
-                    deathReason = $"{Main.LocalPlayer.name} traicionó el camino del mago.";
+                    if (!item.CountsAsClass(DamageClass.Magic))
+                    {
+                        betrayedHisClass = true;
+                        deathReason = $"{Main.LocalPlayer.name} traicionó el camino del mago.";
+                    }
+                    break;
                 }
-                break;
-            }
             case EAccessorySoul.Summoner:
-            {
-                if (!ContainsAny(currentItemDamageTypes, SummonPositiveNames) ||
-                    ContainsAny(currentItemDamageTypes, SummonNegativeNames))
                 {
-                    betrayedHisClass = true;
-                    deathReason = $"{Main.LocalPlayer.name} traicionó el camino del invocador.";
+                    if (!item.CountsAsClass(DamageClass.Summon))
+                    {
+                        betrayedHisClass = true;
+                        deathReason = $"{Main.LocalPlayer.name} traicionó el camino del invocador.";
+                    }
+                    break;
                 }
-                break;
-            }
             default:
                 throw new ArgumentOutOfRangeException();
         }
