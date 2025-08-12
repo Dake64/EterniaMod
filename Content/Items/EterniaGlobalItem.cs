@@ -9,49 +9,13 @@ namespace Eternia.Content.Items;
 
 public class EterniaGlobalItem : GlobalItem
 {
-    // Summon
-    private static readonly List<string> SummonPositiveNames = ["Summon"];
-
-    private static readonly List<string> SummonNegativeNames = ["Magic, Ranged, Melee"];
-
-    // Ranged
-    private static readonly List<string> RangedPositiveNames = ["Ranged"];
-
-    private static readonly List<string> RangedNegativeNames = ["Magic, Summon, Melee"];
-
-    // Melee
-    private static readonly List<string> MeleePositiveNames = ["Melee"];
-
-    private static readonly List<string> MeleeNegativeNames = ["Magic, Ranged, Summon"];
-
-    // Magic
-    private static readonly List<string> MagicPositiveNames = ["Magic"];
-    private static readonly List<string> MagicNegativeNames = ["Ranged, Summon, Melee"];
-
 
     public override bool? UseItem(Item item, Player player)
     {
-        Main.NewText(item.CountsAsClass(DamageClass.Summon));
-        Main.NewText(item.CountsAsClass(DamageClass.Ranged));
-        Main.NewText(item.CountsAsClass(DamageClass.Melee));
-        Main.NewText(item.CountsAsClass(DamageClass.Magic));
-
-        Main.NewText($"Item: {item.Name}");
-        Main.NewText($"{item.DamageType.DisplayName}");
-        Main.NewText($"{item.DamageType.Name}");
-        Main.NewText($"{item.DamageType.GetType().Name}");
-        Main.NewText(
-            $"EquippedAccessorySoul: {Main.LocalPlayer.GetModPlayer<EterniaGlobalPlayer>().EquippedAccessorySoul}");
-        Main.NewText("------------");
         if (item.OriginalDamage > 0 && item.axe == 0 && item.pick == 0 && item.hammer == 0)
             return CheckBetray(item);
 
         return base.UseItem(item, player);
-    }
-
-    private static bool ContainsAny(string source, List<string> keywords)
-    {
-        return keywords.Any(keyword => source.Contains(keyword, StringComparison.OrdinalIgnoreCase));
     }
 
     private bool CheckBetray(Item item)
@@ -86,6 +50,7 @@ public class EterniaGlobalItem : GlobalItem
                     {
                         betrayedHisClass = true;
                         deathReason = $"{Main.LocalPlayer.name} traicionó el camino del arquero.";
+
                     }
 
                     break;
@@ -112,15 +77,14 @@ public class EterniaGlobalItem : GlobalItem
                 throw new ArgumentOutOfRangeException();
         }
 
-
         if (!betrayedHisClass || item.damage <= 0) return true;
-
 
         Main.LocalPlayer.KillMe(
             Terraria.DataStructures.PlayerDeathReason.ByCustomReason(deathReason),
             9999,
             0
         );
+        // Terraria.Localization.NetworkText
         return false;
     }
 }
