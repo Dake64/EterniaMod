@@ -1,11 +1,11 @@
 obj/
-# Default ignored files
+﻿# Default ignored files
 /shelf/
 /workspace.xml
 # Rider ignored files
+/.idea.EterniaMod.iml
 /contentModel.xml
 /projectSettingsUpdater.xml
-/.idea.Eternia.iml
 /modules.xml
 # Editor-based HTTP Client requests
 /httpRequests/
