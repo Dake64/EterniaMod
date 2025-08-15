@@ -398,3 +398,8 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
+# Additional ignore rules for build artifacts and IDE files
+obj/
+bin/
+.idea/
+*.DotSettings.user
